@@ -8,7 +8,7 @@ const JWT_SECRET = 'SECRET_KEY'
 async function register(userData: RegisterUserInput) {
     const user = await User.create(userData);
     const payload = {
-        id: user._id,
+        id: user.id,
         emaiL: user.email
     }
     const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '2h' });
@@ -27,7 +27,7 @@ async function login({ email, password }: LoginUserInput) {
     }
 
     const payload = {
-        id: user._id,
+        id: user.id,
         email: user.email
     }
     const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '2h' });
