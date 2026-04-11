@@ -1,44 +1,23 @@
 {
-  // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
-    // File Layout
+    /* Основна архитектура */
     "rootDir": "./src",
     "outDir": "./dist",
+    
+    /* Сърцето на проблема - Модулите */
+    "target": "es2022",
+    "module": "CommonJS",
+    
+    /* Тази настройка ти позволява да пишеш 'import express from "express"' */
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
 
-    // Environment Settings
-    // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
-    "target": "esnext",
-    "types": [],
-    // For nodejs:
-    // "lib": ["esnext"],
-    // "types": ["node"],
-    // and npm install -D @types/node
-
-    // Other Outputs
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
-
-    // Stricter Typechecking Options
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
-
-    // Style Options
-    // "noImplicitReturns": true,
-    // "noImplicitOverride": true,
-    // "noUnusedLocals": true,
-    // "noUnusedParameters": true,
-    // "noFallthroughCasesInSwitch": true,
-    // "noPropertyAccessFromIndexSignature": true,
-
-    // Recommended Options
+    /* Стриктни правила */
     "strict": true,
-    "jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
+    "noUncheckedIndexedAccess": true,
     "skipLibCheck": true,
+
+    /* Генериране на файлове */
+    "sourceMap": true
   }
 }

@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import morgan from "morgan";
-import routes from "./routes.js";
+import routes from "./routes";
 
 const app = express();
 
