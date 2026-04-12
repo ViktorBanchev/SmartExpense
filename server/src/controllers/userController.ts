@@ -56,4 +56,12 @@ userController.post('/login', async (req, res) => {
     }
 });
 
+userController.post('/logout', (req, res) => {
+    res.cookie('auth', '', {
+        httpOnly: true,
+        maxAge: 1 
+    });
+    res.status(200).json({ message: 'Successfull logout' });
+})
+
 export default userController;
