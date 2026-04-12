@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import morgan from "morgan";
 import routes from "./routes";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
@@ -14,6 +15,7 @@ async function main() {
 
 app.use(morgan('short'));
 app.use(express.json());
+app.use(cookieParser());
 
 app.use('/api', routes);
 
