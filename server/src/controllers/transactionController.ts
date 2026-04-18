@@ -1,10 +1,28 @@
 import { Request, Router } from "express";
 import { z } from 'zod';
-import { createTransaction, deleteTransaction } from "../services/transactionService";
+import { createTransaction, deleteTransaction, getTransactions } from "../services/transactionService";
 import { createTransactionSchema } from "../schemas/transaction.schema";
 import { AuthRequest, requireAuth } from "../middlewares/authMiddleware";
 
 const transactionController = Router();
+
+transactionController.get('/', requireAuth, async (req: AuthRequest, res) => {
+    try {
+        const userId = req.user?.id;
+
+        if (!userId) {
+            return res.status(401).json({ message: 'Unauthorized access' });
+        }
+
+        const transactions = await getTransactions(userId);
+        res.status(200).json({
+            message: 'Transactions retrieved',
+            transactions: transactions
+        })
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' })
+    }
+})
 
 transactionController.post('/', requireAuth, async (req: AuthRequest, res) => {
     try {
@@ -22,7 +40,7 @@ transactionController.post('/', requireAuth, async (req: AuthRequest, res) => {
         })
     } catch (error: any) {
         if (error.name === 'ZodError') {
-            res.status(400).json({ errors: error.errors })
+            return res.status(400).json({ errors: error.errors })
         }
 
         res.status(500).json({ message: 'Server error' })
