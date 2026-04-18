@@ -41,21 +41,26 @@ export default function Home() {
     return (
         <div className="min-h-screen bg-gray-50 p-6 md:p-10">
             <header className="flex justify-between items-center mb-8">
-                <div>
-                    <h1 className="text-2xl font-bold text-gray-900">Hello, {user?.fullName} 👋</h1>
-                    <p className="text-gray-500 text-sm">Here are your finances today.</p>
+                <div className="flex-1 min-w-0">
+                    <h1 className="text-xl sm:text-2xl font-bold text-gray-900 truncate">
+                        Hello, {user?.fullName} 👋
+                    </h1>
+                    <p className="text-gray-500 text-xs sm:text-sm truncate">
+                        Here are your finances today.
+                    </p>
                 </div>
 
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3 sm:gap-4 shrink-0">
                     <button
                         onClick={() => logout()}
-                        className="px-4 py-2 bg-white border border-red-200 text-red-600 rounded-lg hover:bg-red-50 transition-colors font-medium shadow-sm"
+                        className="px-3 py-1.5 sm:px-4 sm:py-2 bg-white border border-red-200 text-red-600 rounded-lg hover:bg-red-50 transition-colors font-medium text-sm sm:text-base shadow-sm"
                     >
                         Logout
                     </button>
-                </div>
-                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-md">
-                    {user?.fullName?.[0].toUpperCase()}
+
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg sm:text-xl shadow-md shrink-0">
+                        {user?.fullName?.[0].toUpperCase()}
+                    </div>
                 </div>
             </header>
 
