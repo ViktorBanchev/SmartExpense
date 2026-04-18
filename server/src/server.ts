@@ -10,8 +10,8 @@ const app = express();
 
 main().catch(err => console.log(err));
 async function main() {
-    await mongoose.connect('mongodb://localhost:27017', {
-        dbName: 'smart-expense'
+    await mongoose.connect(config.MONGO_URI, {
+        dbName: 'expense-tracker'
     });
 }
 
