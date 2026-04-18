@@ -19,6 +19,7 @@ app.use(cors({
     origin: config.CLIENT_URI,
     credentials: true
 }));
+
 app.use(morgan('short'));
 app.use(express.json());
 app.use(cookieParser());
