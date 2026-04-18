@@ -11,7 +11,13 @@ async function register(userData: RegisterUserInput) {
         email: user.email
     }
     const token = jwt.sign(payload, config.jwtSecret, { expiresIn: '2h' });
-    return token;
+    return {
+        token,
+        loggedUser: {
+            email: user.email,
+            fullName: `${user.firstName} ${user.lastName}`
+        }
+    };
 }
 
 async function login({ email, password }: LoginUserInput) {
