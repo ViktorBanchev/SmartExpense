@@ -16,8 +16,8 @@ async function main() {
 }
 
 app.use(cors({
-    origin: 'http://localhost:5173', // ВНИМАНИЕ: Смени това с порта, на който реално върви твоят React!
-    credentials: true // Това е КРИТИЧНО, за да могат да минават бисквитките (cookies) за логин
+    origin: 'http://localhost:5173',
+    credentials: true
 }));
 app.use(morgan('short'));
 app.use(express.json());
