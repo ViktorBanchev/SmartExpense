@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from 'jsonwebtoken';
+import { config } from "../config";
 
 export interface AuthRequest extends Request {
     user?: { id: string };
@@ -13,10 +14,10 @@ export const requireAuth = (req: AuthRequest, res: Response, next: NextFunction)
     }
 
     try {
-        const decoded = jwt.verify(token, 'SECRET_KEY') as { id: string };
+        const decoded = jwt.verify(token, config.jwtSecret) as { id: string };
         req.user = decoded;
         next();
     } catch (error) {
-        res.status(401).json({message: 'Invalid session. Try again later.'})
+        res.status(401).json({ message: 'Invalid session. Try again later.' })
     }
 }
