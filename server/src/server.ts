@@ -16,7 +16,7 @@ async function main() {
 }
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: config.CLIENT_URI,
     credentials: true
 }));
 app.use(morgan('short'));
