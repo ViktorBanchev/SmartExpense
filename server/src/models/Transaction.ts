@@ -3,16 +3,22 @@ import { Schema, model, Types } from "mongoose"
 export interface ITransaction {
     userId: Types.ObjectId,
     amount: number,
+    title: string,
     type: 'INCOME' | 'EXPENSE',
     category: string,
     note?: string,
     date: Date,
+    icon: string
 }
 
 const transactionSchema = new Schema<ITransaction>({
     userId: {
         type: Types.ObjectId,
         ref: 'User',
+        required: true,
+    },
+    title: {
+        type: String,
         required: true,
     },
     amount: {
@@ -25,10 +31,6 @@ const transactionSchema = new Schema<ITransaction>({
         enum: ['INCOME', 'EXPENSE'],
         required: true
     },
-    category: {
-        type: String,
-        required: true
-    },
     note: {
         type: String,
         required: false,
@@ -36,6 +38,11 @@ const transactionSchema = new Schema<ITransaction>({
     date: {
         type: Date,
         default: Date.now()
+    },
+    icon: {
+        type: String,
+        required: true,
+        default: '💰',
     }
 }, { timestamps: true });
 
