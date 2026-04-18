@@ -1,6 +1,10 @@
 import { Transaction } from "../models/Transaction";
 import { CreateTransactionInput } from "../schemas/transaction.schema";
 
+async function getTransactions(userId: string) {
+    const transactions = await Transaction.find({userId: userId});
+    return transactions;
+}
 
 async function createTransaction(data: CreateTransactionInput, userId: string) {
     const transaction = await Transaction.create({ userId, ...data });
@@ -13,5 +17,6 @@ async function deleteTransaction(transactionId: string) {
 
 export {
     createTransaction,
-    deleteTransaction
+    deleteTransaction,
+    getTransactions
 }
