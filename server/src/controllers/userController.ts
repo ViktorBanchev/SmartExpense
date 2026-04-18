@@ -6,10 +6,6 @@ import { requireAuth } from '../middlewares/authMiddleware';
 
 const userController = Router();
 
-userController.get('/', (req, res) => {
-    res.send('users')
-});
-
 userController.post('/register', async (req, res) => {
     try {
         const validData = registerSchema.parse(req.body);

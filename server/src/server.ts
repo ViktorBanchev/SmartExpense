@@ -25,8 +25,4 @@ app.use(cookieParser());
 
 app.use('/api', routes);
 
-app.get('/', (req, res) => {
-    res.send('working')
-})
-
 app.listen(config.port, () => console.log(`Server working on port ${config.port}`))
